@@ -16,8 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
         $stmt = mysqli_prepare($conn, 
             "INSERT INTO clients (full_name, email, phone, address) VALUES (?, ?, ?, ?)");
         mysqli_stmt_bind_param($stmt, "ssss", $full_name, $email, $phone, $address);
-        $success = mysqli_stmt_execute($stmt);
-        $message = $success ? "Client added successfully!" : "Error: " . mysqli_error($conn);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            $success = true;
+            $message = "Client added successfully!";
+        } else {
+            $message = "Error: " . mysqli_error($conn);
+        }
         mysqli_stmt_close($stmt);
     }
 }
@@ -30,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Client</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body class="bg-light">
 
@@ -39,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
 
 <div class="form-container">
 
-    <h2 class="clients-heading">Add New Client</h2>
+    <h2 class="clients-heading text-center">Add New Client</h2>
 
     <?php if ($message): ?>
-        <div class="alert alert-<?= $success ? 'success' : 'danger' ?> alert-dismissible fade show mb-4" role="alert">
+        <div class="alert alert-<?= $success ? 'success' : 'danger' ?> alert-dismissible fade show" role="alert">
             <?= htmlspecialchars($message) ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -51,36 +56,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     <?php if ($success): ?>
         <div class="text-center mt-4">
             <a href="clients_list.php" class="btn btn-outline-secondary px-4 me-3">Back to List</a>
-            <a href="clients_add.php" class="btn btn-primary px-4">Add Another Client</a>
+            <a href="clients_add.php" class="btn btn-primary px-4">Add Another</a>
         </div>
     <?php else: ?>
 
-        <form method="post">
-            <div class="mb-4">
-                <label class="form-label">Full Name <span class="required">*</span></label>
-                <input type="text" name="full_name" class="form-control" required value="<?= htmlspecialchars($_POST['full_name'] ?? '') ?>">
-            </div>
+    <form method="post" class="mt-4">
+        <div class="mb-3">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" name="full_name" class="form-control" required value="<?= htmlspecialchars($_POST['full_name'] ?? '') ?>">
+        </div>
 
-            <div class="mb-4">
-                <label class="form-label">Email <span class="required">*</span></label>
-                <input type="email" name="email" class="form-control" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Email <span class="required">*</span></label>
+            <input type="email" name="email" class="form-control" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+        </div>
 
-            <div class="mb-4">
-                <label class="form-label">Phone</label>
-                <input type="tel" name="phone" class="form-control" value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>">
-            </div>
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="tel" name="phone" class="form-control" value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>">
+        </div>
 
-            <div class="mb-5">
-                <label class="form-label">Address</label>
-                <input type="text" name="address" class="form-control" value="<?= htmlspecialchars($_POST['address'] ?? '') ?>">
-            </div>
+        <div class="mb-4">
+            <label class="form-label">Address</label>
+            <input type="text" name="address" class="form-control" value="<?= htmlspecialchars($_POST['address'] ?? '') ?>">
+        </div>
 
-            <div class="form-actions">
-                <button type="submit" name="save" class="btn btn-primary btn-lg">Save Client</button>
-                <a href="clients_list.php" class="btn btn-outline-secondary btn-lg">Cancel</a>
-            </div>
-        </form>
+        <div class="form-actions">
+             <button type="submit" class="btn btn-primary btn-lg">Save Client</button>
+             <a href="clients_list.php" class="btn btn-outline-secondary btn-lg">Cancel</a>
+        </div>
+    </form>
 
     <?php endif; ?>
 
