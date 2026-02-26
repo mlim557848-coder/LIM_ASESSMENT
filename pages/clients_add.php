@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
 
     if ($full_name === '' || $email === '') {
         $message = "Full Name and Email are required.";
+        $success = false;
     } else {
         $stmt = mysqli_prepare($conn, 
             "INSERT INTO clients (full_name, email, phone, address) VALUES (?, ?, ?, ?)");
@@ -21,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             $success = true;
             $message = "Client added successfully!";
         } else {
-            $message = "Error: " . mysqli_error($conn);
+            $message = "Database error: " . mysqli_error($conn);
+            $success = false;
         }
         mysqli_stmt_close($stmt);
     }
@@ -63,27 +65,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     <form method="post" class="mt-4">
         <div class="mb-3">
             <label class="form-label">Full Name <span class="required">*</span></label>
-            <input type="text" name="full_name" class="form-control" required value="<?= htmlspecialchars($_POST['full_name'] ?? '') ?>">
+            <input type="text" name="full_name" class="form-control" required 
+                   value="<?= htmlspecialchars($_POST['full_name'] ?? '') ?>" autofocus>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Email <span class="required">*</span></label>
-            <input type="email" name="email" class="form-control" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+            <input type="email" name="email" class="form-control" required 
+                   value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
         </div>
 
         <div class="mb-3">
             <label class="form-label">Phone</label>
-            <input type="tel" name="phone" class="form-control" value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>">
+            <input type="tel" name="phone" class="form-control" 
+                   value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>">
         </div>
 
         <div class="mb-4">
             <label class="form-label">Address</label>
-            <input type="text" name="address" class="form-control" value="<?= htmlspecialchars($_POST['address'] ?? '') ?>">
+            <input type="text" name="address" class="form-control" 
+                   value="<?= htmlspecialchars($_POST['address'] ?? '') ?>">
         </div>
 
         <div class="form-actions">
-             <button type="submit" class="btn btn-primary btn-lg">Save Client</button>
-             <a href="clients_list.php" class="btn btn-outline-secondary btn-lg">Cancel</a>
+            <button type="submit" name="save" class="btn btn-primary btn-lg">Save Client</button>
+            <a href="clients_list.php" class="btn btn-outline-secondary btn-lg">Cancel</a>
         </div>
     </form>
 

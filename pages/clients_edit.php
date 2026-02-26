@@ -18,6 +18,7 @@ if ($id > 0) {
 
 if (!$client) {
     $message = "Client not found.";
+    $success = false;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update']) && $client) {
@@ -28,20 +29,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update']) && $client)
 
     if ($full_name === '' || $email === '') {
         $message = "Full Name and Email are required.";
+        $success = false;
     } else {
         $stmt = mysqli_prepare($conn, 
             "UPDATE clients SET full_name = ?, email = ?, phone = ?, address = ? WHERE client_id = ?");
         mysqli_stmt_bind_param($stmt, "ssssi", $full_name, $email, $phone, $address, $id);
-        $success = mysqli_stmt_execute($stmt);
-        $message = $success ? "Client updated successfully!" : "Error: " . mysqli_error($conn);
-        mysqli_stmt_close($stmt);
         
-        if ($success) {
+        if (mysqli_stmt_execute($stmt)) {
+            $success = true;
+            $message = "Client updated successfully!";
+            // Refresh client data
             $client['full_name'] = $full_name;
             $client['email']     = $email;
             $client['phone']     = $phone;
             $client['address']   = $address;
+        } else {
+            $message = "Database error: " . mysqli_error($conn);
+            $success = false;
         }
+        mysqli_stmt_close($stmt);
     }
 }
 ?>
@@ -76,22 +82,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update']) && $client)
         <form method="post">
             <div class="mb-4">
                 <label class="form-label">Full Name <span class="required">*</span></label>
-                <input type="text" name="full_name" class="form-control" required value="<?= htmlspecialchars($client['full_name']) ?>">
+                <input type="text" name="full_name" class="form-control" required 
+                       value="<?= htmlspecialchars($client['full_name']) ?>" autofocus>
             </div>
 
             <div class="mb-4">
                 <label class="form-label">Email <span class="required">*</span></label>
-                <input type="email" name="email" class="form-control" required value="<?= htmlspecialchars($client['email']) ?>">
+                <input type="email" name="email" class="form-control" required 
+                       value="<?= htmlspecialchars($client['email']) ?>">
             </div>
 
             <div class="mb-4">
                 <label class="form-label">Phone</label>
-                <input type="tel" name="phone" class="form-control" value="<?= htmlspecialchars($client['phone'] ?? '') ?>">
+                <input type="tel" name="phone" class="form-control" 
+                       value="<?= htmlspecialchars($client['phone'] ?? '') ?>">
             </div>
 
             <div class="mb-5">
                 <label class="form-label">Address</label>
-                <input type="text" name="address" class="form-control" value="<?= htmlspecialchars($client['address'] ?? '') ?>">
+                <input type="text" name="address" class="form-control" 
+                       value="<?= htmlspecialchars($client['address'] ?? '') ?>">
             </div>
 
             <div class="form-actions">

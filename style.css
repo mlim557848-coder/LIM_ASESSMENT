@@ -16,9 +16,8 @@ body {
 }
 
 /* ==========================================================================
-   NAVIGATION BAR — Redesigned (light, clean, sticky)
+   NAVIGATION BAR
    ========================================================================== */
-
 .navbar {
     background: #ffffff !important;
     box-shadow: 0 1px 0 #e8ecf0, 0 4px 16px rgba(0,0,0,0.05) !important;
@@ -70,48 +69,18 @@ body {
     font-weight: 600;
 }
 
-.navbar-toggler {
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 0.4rem 0.6rem;
-}
-
-.navbar-toggler:focus {
-    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15);
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2826,26,46,0.7%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
-@media (max-width: 991px) {
-    .navbar-collapse {
-        background: #ffffff;
-        border-top: 1px solid #f0f2f5;
-        margin-top: 0.5rem;
-        padding: 0.6rem 0;
-        border-radius: 0 0 10px 10px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    }
-
-    .navbar-nav .nav-link {
-        margin: 0 0.25rem;
-    }
-}
-
 /* ==========================================================================
    SHARED PAGE CONTAINERS
    ========================================================================== */
-
 .page-container {
     width: 100%;
-    max-width: 980px;
+    max-width: 1080px;
     margin: 2.5rem auto;
     padding: 0 1.25rem;
 }
 
 .form-container {
-    max-width: 580px;
+    max-width: 620px;
     margin: 3rem auto;
     background: #ffffff;
     border-radius: 12px;
@@ -123,7 +92,6 @@ body {
 /* ==========================================================================
    HEADINGS
    ========================================================================== */
-
 .clients-heading {
     font-size: clamp(1.6rem, 4vw, 2rem);
     font-weight: 700;
@@ -132,74 +100,25 @@ body {
     letter-spacing: -0.02em;
 }
 
-/* ==========================================================================
-   DASHBOARD — UNCHANGED
-   ========================================================================== */
-
-main.container h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #1a1a2e;
-    letter-spacing: -0.03em;
-}
-
-.card {
-    border-radius: 12px !important;
-    border: none !important;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
-}
-
-.card-body {
-    padding: 2rem 1.5rem;
-}
-
-.card-title {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    font-weight: 600;
-    color: #64748b;
-    margin-bottom: 0.5rem;
-}
-
-.card h2.fw-bold {
-    font-size: 2.5rem;
-    color: #1a1a2e;
-}
-
-.card.border-primary  { border-left: 4px solid #3b82f6 !important; }
-.card.border-success  { border-left: 4px solid #22c55e !important; }
-.card.border-warning  { border-left: 4px solid #f59e0b !important; }
-.card.border-danger   { border-left: 4px solid #ef4444 !important; }
-
-.quick-links-section {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-}
-
-.quick-links-section h2 {
-    font-weight: 700;
-    color: #1a1a2e;
-    font-size: 1.3rem;
+.clients-heading::after {
+    content: '';
+    display: block;
+    width: 44px;
+    height: 4px;
+    background: #e94560;
+    border-radius: 2px;
+    margin-top: 0.5rem;
 }
 
 /* ==========================================================================
-   CLIENTS & SERVICES — List Header
+   LIST HEADER
    ========================================================================== */
-
 .list-header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 1.75rem;
-    gap: 1rem;
+    margin-bottom: 2rem;
+    gap: 1.25rem;
 }
 
 @media (min-width: 576px) {
@@ -210,302 +129,221 @@ main.container h1 {
     }
 }
 
-/* Red underline accent on page titles */
-.list-header .clients-heading {
-    margin-bottom: 0;
-}
-
-.list-header .clients-heading::after {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 3px;
-    background: #e94560;
-    border-radius: 2px;
-    margin-top: 0.45rem;
-}
-
 /* ==========================================================================
-   CLIENTS & SERVICES — Table Card
+   CARDS & TABLES — Unified look
    ========================================================================== */
-
-.clients-card {
+.clients-card, .table-responsive {
     border-radius: 14px;
     overflow: hidden;
     background: #ffffff;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
     border: 1px solid #eef1f6;
 }
 
-.clients-table thead tr {
+.table {
+    margin-bottom: 0;
+}
+
+.table thead tr {
     background: linear-gradient(90deg, #1a1a2e 0%, #0f3460 100%);
 }
 
-.clients-table thead th {
-    color: #cdd6f4;
+.table thead th {
+    color: #e0e7ff;
     font-weight: 600;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.5px;
+    padding: 1rem 1.3rem;
     border: none;
-    padding: 0.95rem 1.25rem;
-    white-space: nowrap;
 }
 
-.clients-table td {
+.table td {
     vertical-align: middle;
-    color: #1a1a2e;
-    padding: 0.9rem 1.25rem;
-    font-size: 0.93rem;
+    padding: 1rem 1.3rem;
+    font-size: 0.95rem;
     border-color: #f1f5f9;
 }
 
-.clients-table tbody tr {
-    transition: background 0.12s;
-}
-
-.clients-table tbody tr:hover {
+.table tbody tr:hover {
     background-color: #fdf4f6 !important;
-}
-
-.action-cell {
-    text-align: right !important;
+    transition: background-color 0.14s ease;
 }
 
 /* ==========================================================================
-   CLIENTS & SERVICES — Badges
+   BADGES — Status & availability
    ========================================================================== */
+.badge {
+    padding: 0.4em 0.9em;
+    font-weight: 600;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
 
 .badge.bg-success {
     background: linear-gradient(135deg, #22c55e, #16a34a) !important;
-    color: #fff !important;
-    padding: 0.35em 0.8em;
-    border-radius: 20px;
-    font-size: 0.76rem;
-    font-weight: 600;
-    letter-spacing: 0.2px;
+}
+
+.badge.bg-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    color: white;
 }
 
 .badge.bg-secondary {
-    background: #e9ecf0 !important;
-    color: #6b7280 !important;
-    padding: 0.35em 0.8em;
-    border-radius: 20px;
-    font-size: 0.76rem;
-    font-weight: 600;
-}
-
-/* ==========================================================================
-   CLIENTS & SERVICES — Empty State
-   ========================================================================== */
-
-.empty-state {
-    text-align: center;
-    padding: 5rem 1rem 4rem;
-    background: #ffffff;
-    border-radius: 14px;
-    border: 2px dashed #dde3ec;
-}
-
-.empty-state .icon-wrapper {
-    font-size: clamp(3.5rem, 12vw, 5.5rem);
-    color: #e2e8f0;
-    margin-bottom: 1.25rem;
-    display: block;
-}
-
-.empty-state h4 {
-    font-size: 1.3rem;
-    font-weight: 700;
+    background: #e2e8f0 !important;
     color: #475569;
-    margin-bottom: 0.6rem;
 }
 
-.empty-state p {
-    font-size: 0.95rem;
-    max-width: 380px;
-    margin: 0 auto 1.5rem;
-    color: #94a3b8;
-}
-
-/* ==========================================================================
-   FORMS — Add/Edit Client & Service
-   ========================================================================== */
-
-/* Centered heading with red accent line */
-.form-container .clients-heading {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.form-container .clients-heading::after {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 3px;
-    background: #e94560;
-    border-radius: 2px;
-    margin: 0.5rem auto 0;
-}
-
-.form-label {
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.4rem;
-    font-size: 0.875rem;
-    display: block;
-}
-
-.form-control,
-.form-select {
-    font-size: 0.95rem;
-    padding: 0.7rem 1rem;
-    border: 1.5px solid #e5e7eb;
-    border-radius: 8px;
-    height: 46px;
-    background-color: #fafafa;
-    color: #1a1a2e;
-    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-}
-
-.form-control:focus,
-.form-select:focus {
-    border-color: #e94560;
-    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
-    outline: none;
-    background-color: #ffffff;
-}
-
-.form-control::placeholder {
-    color: #b0b8c4;
-}
-
-textarea.form-control {
-    height: auto;
-    min-height: 90px;
-    resize: vertical;
-}
-
-.required {
-    color: #e94560;
-    font-weight: 700;
-}
-
-/* Form buttons — right-aligned with divider */
-.form-actions {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #f1f5f9;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-}
-
-@media (min-width: 480px) {
-    .form-actions {
-        flex-direction: row;
-        justify-content: flex-end;
-        gap: 0.75rem;
-    }
+.badge.bg-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
 }
 
 /* ==========================================================================
    BUTTONS
    ========================================================================== */
-
 .btn-primary {
     background-color: #e94560 !important;
     border-color: #e94560 !important;
-    color: #fff !important;
+    color: white !important;
     font-weight: 600;
-    border-radius: 8px;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
 }
 
 .btn-primary:hover {
     background-color: #c73652 !important;
     border-color: #c73652 !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(233, 69, 96, 0.3);
-}
-
-.btn-outline-secondary {
-    border-color: #d1d5db !important;
-    color: #6b7280 !important;
-    font-weight: 600;
-    border-radius: 8px;
-    background: transparent;
-    transition: background 0.2s, color 0.2s;
-}
-
-.btn-outline-secondary:hover {
-    background-color: #f3f4f6 !important;
-    color: #1a1a2e !important;
-    border-color: #cbd5e1 !important;
 }
 
 .btn-outline-primary {
-    border-color: #e94560 !important;
-    color: #e94560 !important;
-    font-weight: 600;
-    border-radius: 8px;
-    background: transparent;
-    transition: background 0.2s, color 0.2s;
+    border-color: #e94560;
+    color: #e94560;
 }
 
 .btn-outline-primary:hover {
-    background-color: #e94560 !important;
-    color: #fff !important;
+    background-color: #e94560;
+    color: white;
 }
 
-.btn-outline-dark {
-    border-radius: 8px;
+.btn-outline-secondary {
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f1f5f9;
+    color: #1a1a2e;
+}
+
+/* ==========================================================================
+   FORMS
+   ========================================================================== */
+.form-label {
     font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.45rem;
+    font-size: 0.9rem;
 }
 
-.btn-lg {
-    padding: 0.7rem 1.75rem;
-    font-size: 0.95rem;
-    min-width: 130px;
+.form-control, .form-select {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    height: 48px;
+    background: #fafafa;
 }
 
-.btn-sm {
-    border-radius: 7px;
-    font-size: 0.8rem;
-    padding: 0.32rem 0.8rem;
-    font-weight: 500;
+.form-control:focus, .form-select:focus {
+    border-color: #e94560;
+    box-shadow: 0 0 0 3px rgba(233,69,96,0.12);
+    background: white;
+}
+
+.required {
+    color: #e94560;
+}
+
+.form-actions {
+    margin-top: 2.25rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+.empty-state {
+    text-align: center;
+    padding: 6rem 1.5rem;
+    background: white;
+    border-radius: 14px;
+    border: 2px dashed #e2e8f0;
+}
+
+.empty-state .icon-wrapper {
+    font-size: 5.5rem;
+    color: #e2e8f0;
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   PAYMENT PROCESS — Summary
+   ========================================================================== */
+.payment-summary {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 1.75rem;
+    margin-bottom: 2.25rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.payment-summary .item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.9rem;
+    font-size: 1rem;
+}
+
+.payment-summary .label {
+    color: #64748b;
+}
+
+.payment-summary .value {
+    font-weight: 700;
+}
+
+.payment-summary .balance {
+    font-size: 1.5rem;
+    color: #e94560;
+    font-weight: 800;
+}
+
+/* ==========================================================================
+   TOOLS PAGE — Assign form
+   ========================================================================== */
+.assign-tool-box {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+    margin-top: 2.5rem;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.05);
+}
+
+.assign-tool-box h3 {
+    color: #e94560;
+    margin-bottom: 1.75rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid #fee2e2;
 }
 
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
-
 @media (max-width: 576px) {
-    .form-container {
-        margin: 1.5rem 0.75rem;
-        padding: 1.75rem 1.25rem;
-    }
-
-    .page-container {
-        margin: 1.5rem auto;
-        padding: 0 0.75rem;
-    }
-
-    .clients-heading {
-        font-size: 1.5rem;
-    }
-
-    .btn-lg {
-        width: 100%;
-    }
-
-    .card h2.fw-bold {
-        font-size: 2rem;
-    }
-
-    .form-actions {
-        border-top: none;
-        padding-top: 0;
-    }
+    .page-container { padding: 0 0.9rem; margin: 1.8rem auto; }
+    .form-container { padding: 1.8rem 1.4rem; }
+    .form-actions { flex-direction: column; }
+    .btn-lg { width: 100%; }
 }
